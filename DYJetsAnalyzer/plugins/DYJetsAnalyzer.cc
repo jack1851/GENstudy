@@ -97,7 +97,7 @@ DYJetsAnalyzer::DYJetsAnalyzer(const edm::ParameterSet& iConfig)
   usesResource("TFileService");
   edm::Service<TFileService> fs;
 
-  myHistograms.book(fs->mkdir("allEvents"),false);
+  myHistograms.book(fs->mkdir("allPassingEvents"),false);
 
 }
 
@@ -128,6 +128,7 @@ DYJetsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
    iEvent.getByToken(m_genEventInfoToken, genEventInfo);
 
    myEvent.eventWeight = genEventInfo->weight()/fabs(genEventInfo->weight());
+   myHistograms.m_eventWeight->Fill(myEvent.eventWeight);
 
 
    edm::Handle<std::vector<reco::GenParticle>> genParticles;
@@ -140,7 +141,6 @@ DYJetsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
        if( ! iParticle->isHardProcess() ) continue;  //ONLY HARD PROCESS AND NOT INCOMING
        if( iParticle->status() == 21 ) continue;
        std::cout << "STATUS: " << iParticle->status() << " PDGID: " << iParticle->pdgId() << " MOTHER: " << iParticle->mother()->pdgId() << std::endl;
-       if( abs( iParticle->mother()->pdgId() ) ==23) {//CAME FROM A Z
          if( abs( iParticle->pdgId() ) == 13 || abs( iParticle->pdgId() ) == 11 ){ //HERE'S A LEPtON
 	   if(lepton1 == 0){
              lepton1 = &(*iParticle);
@@ -149,14 +149,11 @@ DYJetsAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	     lepton2 = &(*iParticle);
 	   }
 	 }
-       }
    }
 
    if(lepton1 == 0 || lepton2 == 0) return;
-   //if(lepton1->pt()<60) return;
-   //if(lepton2->pt()<53) return;
-   if(lepton1->pt()<27) return;
-   if(lepton2->pt()<27) return;
+   if(lepton1->pt()<60) return;
+   if(lepton2->pt()<53) return;
    if(fabs(lepton1->eta())>2.4) return;
    if(fabs(lepton2->eta())>2.4) return;
    std::cout << "Gen lepton1: " << lepton1->p4() << ", "<< lepton1->pt() << std::endl;
