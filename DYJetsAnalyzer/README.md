@@ -8,6 +8,7 @@ Setup up repo by running the following:
 3. cmsenv
 4. git clone https://github.com/Michael-Krohn/GENstudy.git
 5. scram b
+6. cd GENstudy/DYJetsAnalyzer/
 ```
 
 First, create a txt file that contains the file paths for every GEN root file, one per line. Also, begin each file path with 'file:/hdfs/...'. For an example, see datafiles/DYJets_m200.txt
