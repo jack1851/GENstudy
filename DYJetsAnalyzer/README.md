@@ -25,13 +25,13 @@ cmsRun python/Config_DYJetsAnalyzer.py runLocally=True
 ./condor_filelist.perl python/Config_DYJetsAnalyzer.py datafiles/DYJets_m200.txt --batch 1 --jobname Config_DYJetsAnalyzer_DYJets_m200
 ```
 
-Once jobs have finished running:
+Once jobs have finished running, combine them into a single root file:
 
 ```
 python ahaddDatasets.py <Name of dataset> <Path to root files output from condor> <output directory>
 ```
 
-Plot the hists from the output file
+Plot the hists from the output root file:
 ```
 python plotting/allVariableStacks.py  --o plots/ --l 59.74
 ```
