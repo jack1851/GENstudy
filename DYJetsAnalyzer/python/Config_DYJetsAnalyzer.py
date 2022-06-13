@@ -10,6 +10,8 @@ options.register( 'runLocally',
                                   VarParsing.varType.bool,
                                   "True if running locally")
 
+options.parseArguments()
+
 process = cms.Process("Analysis")
 
 process.load('Configuration.StandardSequences.Services_cff')
