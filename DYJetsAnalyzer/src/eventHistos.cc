@@ -40,7 +40,7 @@ void eventHistos::book(TFileDirectory histFolder, bool binIso){
 
 void eventHistos::FillHists(eventInfo info, bool binIso, bool makeTuples)
 {
-     m_eventWeight->Fill(info.eventWeight);
+
      m_eventCount->Fill(0.5,info.eventWeight);
 
      m_fourObjectInvariantMass->Fill(info.fourObjectInvariantMass, info.eventWeight);
