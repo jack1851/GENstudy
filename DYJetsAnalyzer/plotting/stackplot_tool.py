@@ -19,6 +19,16 @@ class stackInfo:
    def plotAll(self,basedir,tag,outDir):
       #Histogram name, X-axis label, Log Scale, Title, Output Directory, Rebin
       self.stack(basedir+"/fourObjectInvariantMass","m_{lljj} (GeV)",True,tag,outDir, True)
+      self.stack(basedir+"/leadLepPtHisto","Lead lepton p_{T} (GeV)",True,tag,outDir, True)
+      self.stack(basedir+"/subleadLepPtHisto","Sublead lepton p_{T} (GeV)",True,tag,outDir, True)
+      self.stack(basedir+"/leadJetPtHisto","Lead jet p_{T} (GeV)",True,tag,outDir, True)
+      self.stack(basedir+"/subleadJetPtHisto","Sublead jet p_{T} (GeV)",True,tag,outDir, True)
+      self.stack(basedir+"/diJetMass","Dijet Mass m_{jj} (GeV)",True,tag,outDir, True)
+      self.stack(basedir+"/diLepPtHisto","Dilepton  p_{T} (GeV)",True,tag,outDir, True)
+      self.stack(basedir+"/diLepMassHisto","Lead lepton p_{T} (GeV)",True,tag,outDir, True)
+      self.stack(basedir+"/ptllOverMllHisto","p_{T}_{ll}/m_{ll}",True,tag,outDir, True)
+      self.stack(basedir+"/leadJetZMass","m_{jz} (GeV)",True,tag,outDir, True)
+      self.stack(basedir+"/subleadJetZMass","m_{jz} (GeV)",True,tag,outDir, True)
   
 
    def getRatio(self, hist, reference):
@@ -73,7 +83,11 @@ class stackInfo:
 
    def calcScaleFactor(self,name,skimFile,resultFile):
       #Use # of muons passing tag for total weight because I know that there was no over/underflow
-      eff = resultFile.Get("demo/"+name).Integral()/skimFile.Get("demo/allPassingEvents/eventWeight").Integral()
+      #eff = event count / event weight
+      eff = resultFile.Get("demo/"+name).Integral()/skimFile.Get("demo/allPassingEvents/eventWeight").Integral() 
+      print "resultFile integral should return eventCount: ", resultFile.Get("demo/"+name).Integral()
+      print "eventWeight integral should return eventWeight: ", skimFile.Get("demo/allPassingEvents/eventWeight").Integral()
+      print "efficiency which is also nevents:  ", resultFile.Get("demo/"+name).Integral()/skimFile.Get("demo/allPassingEvents/eventWeight").Integral()
       return eff
 
    def stack(self, name, xtitle, log, tag, outDir,rebin=False):
@@ -91,11 +105,16 @@ class stackInfo:
       for mcFile in self.mcFiles:
          eff = self.calcScaleFactor(name,mcFile.skim,mcFile.result)
 	 print "mcFile: ", mcFile
-	 print "nevents: ", eff
+	 print "eff: ", eff
+         print "cross section: ", mcFile.cx
+         print "lumi: ", float(self.lumi)
          Nevents = mcFile.cx*1000*float(self.lumi)*eff
+         print "Nevents: ", Nevents
          hist=(mcFile.result.Get("demo/"+name).Clone())
          if(hist.Integral()>0):
+            #hist.Scale(1.0/hist.Integral())
             hist.Scale(Nevents/hist.Integral())
+            print "hist.Integral: ", hist.Integral()
          hist.SetFillColor(mcFile.color)
          hist.SetLineWidth(0)
          if(rebin):
@@ -122,7 +141,7 @@ class stackInfo:
 
       pad1.SetFillStyle(4000)
       pad1.SetFrameFillStyle(1000)
-      pad1.SetFrameFillColor(0)
+      llPassingEventsdiJetMass_stack.pdfpad1.SetFrameFillColor(0)
       pad2.SetFillStyle(4000)
       pad2.SetFrameFillStyle(1000)
       pad2.SetFrameFillColor(0)
@@ -143,13 +162,13 @@ class stackInfo:
       if log:
 	 minimum=max(stackplot.GetMinimum(),100)
       if not log:
-         minimum=0      
+         minimum=0 
       
       if not log:
          stackplot.SetMaximum(maximum*1.2)
       else:
          stackplot.SetMaximum(maximum*6)
-      stackplot.SetMinimum(minimum)
+      stackplot.SetMinimum(minimum*0.2)
       stackplot.GetXaxis().SetTitleOffset(1)
       stackplot.GetXaxis().SetTitle(xtitle)
       #stackplot.GetXaxis().SetTitleSize(0.5)
@@ -166,7 +185,7 @@ class stackInfo:
       label.SetTextSize(0.033)
       label.Draw()
       
-      stackplot.GetYaxis().SetTitle("Events")
+      stackplot.GetYaxis().SetTitle("Events/4 GeV")
       stackplot.GetYaxis().SetTitleSize(20)
       stackplot.GetYaxis().SetTitleFont(43)
       stackplot.GetYaxis().SetLabelFont(43)
@@ -190,6 +209,6 @@ class stackInfo:
 
       img = ROOT.TImage.Create()
       img.FromPad(plot)
-      img.WriteImage(outDir+"/"+name.split("/")[0]+name.split("/")[1]+"_stack.png")
+     #plot.Print(outDir+"/"+name.split("/")[0]+name.split("/")[1]+"_stack.png")
       plot.Print(outDir+"/"+name.split("/")[0]+name.split("/")[1]+"_stack.pdf")
       #plot.Print(outDir+"/"+name.split("/")[0]+name.split("/")[1]+"_stack.C")

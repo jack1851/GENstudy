@@ -3,7 +3,7 @@
 import argparse
 import os
 import ROOT
-import stackplot_tool as stack
+import stackplot_tool_comparison as stack
 
 parser = argparse.ArgumentParser(description="Create stack plots for the mu+X skim")
 parser.add_argument("--o", "--outputdir"  , dest="outDir"    , help="output directory"          , default=os.getcwd()+"/plots/")
@@ -22,15 +22,21 @@ if not os.path.isdir(outDir):
 WJetsCx=61527.6
 TTToSemiLeptonicCx=365.34
 TTTo2L2NuCx=88.29
-#DYJetsCx=1586 ### For the private RECO DY sample
-DYJetsCx = 1889 ### Cross section for mll > 200
+DYJetsCx_1=3.421 ### For the private RECO DY sample
+#DYJetsCx_xqcut20=1586*0.6625093123055389 ### For the private RECO DY sample
+DYJetsCx_2=3.091
 DYJets10to50Cx=18610
 WWCx=118.7
 
 mcFiles = []
-mcFiles.append(stack.mcFile(ROOT.TFile("hists/50m200/xqcut10/lepton_cuts/DYJets_50m200_50ptl_cut.root","READ"),ROOT.TFile("hists/50m200/xqcut10/lepton_cuts/DYJets_50m200_50ptl_cut.root","READ"), "50 < mll < 200",DYJetsCx,4))
+mcFiles.append(stack.mcFile(ROOT.TFile("hists/m200/xqcut10/lepton_cuts/DYJets_m200_20ptl.root","READ"),ROOT.TFile("hists/m200/xqcut10/lepton_cuts/DYJets_m200_20ptl.root","READ"), " m_{ll} > 200 (ptl = 20 GeV)",DYJetsCx_1,4))
 
-info = stack.stackInfo(mcFiles, arg.lumi)
+#info = stack.stackInfo(mcFiles, arg.lumi)
+info = stack.stackInfo(mcFiles, arg.lumi, ROOT.TFile("hists/m200/xqcut10/lepton_cuts/DYJets_m200_80ptl.root","READ"),DYJetsCx_2)
+
 info.plotAll("allPassingEvents","Passing Events",outDir)
+#info.plotAll("allPassingEvents_dileptonM200to300","Passing Events",outDir)
+#info.plotAll("allPassingEvents_dileptonM300to400","Passing Events",outDir)
+#info.plotAll("allPassingEvents_dileptonM400","Passing Events",outDir)
 
 

@@ -1,0 +1,1 @@
+These .txt files contain a list of all of the GEN root files (AFTER showering and clustering, where qcuts are applied and jet matching is done, but BEFORE the analyzer). We give this txt file to the analyzer, which then loops through and makes the cuts in the analyzer on each root file.

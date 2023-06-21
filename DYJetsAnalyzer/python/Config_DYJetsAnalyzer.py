@@ -32,7 +32,7 @@ process.GlobalTag.globaltag = cms.string('106X_upgrade2018_realistic_v15_L1v1')
 if(options.runLocally):
     import FWCore.Utilities.FileUtils as FileUtils
     process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000) )
-    mylist = FileUtils.loadListFromFile('datafiles/DYJets_m50to150.txt')
+    mylist = FileUtils.loadListFromFile('datafiles/50m200/xqcut10/DYJets_50m200_0ptl_xqcut10_qcut19.txt')
     readFiles = cms.untracked.vstring( *mylist)
 
 process.source = cms.Source ("PoolSource",
@@ -43,8 +43,9 @@ process.source = cms.Source ("PoolSource",
 process.demo = cms.EDAnalyzer('DYJetsAnalyzer',
 	genParticles = cms.InputTag("genParticles"),
         genJets = cms.InputTag("ak4GenJets"),
-	genInfo = cms.InputTag("generator")
-)
+	genInfo = cms.InputTag("generator"),
+        LHEInfo = cms.InputTag("source")
+        )
 
 process.TFileService = cms.Service("TFileService",
                                    fileName = cms.string("GEN_Histos.root"),

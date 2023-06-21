@@ -1,24 +1,22 @@
 #!/usr/bin/perl
 
 use Getopt::Long;
+use File::Basename;
 
 #------------------------
 #$prodSpace=$ENV{"HOME"}."/work";
-$prodSpace="/data/cmszfs1/user/".$ENV{"USER"};
+#$prodSpace="/data/cmszfs1/user/".$ENV{"USER"};
+$prodSpace="/data/cmszfs1/user/".$ENV{"USER"}."/WR/DY_GEN_STUDY/WR_ANALYZE";
 $batch=10;
 $startPoint=0;
 $nosubmit='';
 $use_xrootd=''; # '' is false in perl
 
 
-#$executable=$ENV{"HOME"}."/bin/batch_cmsRun";
-$executable=$ENV{"HOME"}."/batch_cmsRun";
 $rt=$ENV{"LOCALRT"};
 $arch=$ENV{"SCRAM_ARCH"};
 
 $jobBase="default";
-
-print "$executable\n";
 
 GetOptions(
     "batch=i" => \$batch,
@@ -27,36 +25,45 @@ GetOptions(
     "prodspace=s" => \$prodSpace,
     "jobname=s" => \$jobBase,
     "xrootd" => \$use_xrootd,
-    "nice" => \$nice_user
+    "nice" => \$nice_user,
+    "resubmit" => \$resub
 );
 
+$executable="$prodSpace/$jobBase/cfg/$jobBase";
+print "$executable\n";
+open(OUTP,">$executable");
+print OUTP "#!/bin/sh\n";
+print OUTP "source /local/grid/cmssoft/cms/cmsset_default.sh\n";
+print OUTP "pwd\n";
+print OUTP "hostname\n";
+print OUTP "export SINGULARITY_BIND=\"/local/,/export/scratch/,/home/\"\n";
+print OUTP "cmssw-cc7 --command-to-run ".$ENV{"HOME"}."/batch_cmsRun \$@";
+close(OUTP);
+chmod 0755,$executable;
 print "$#ARGV\n";
 $nargs = $#ARGV;
 
-if ($#ARGV!=1) {
-    print "Usage: [BASE CONFIG] [NAME OF FILE CONTAINING LIST OF FILENAMES]\n\n";
-    print "    --batch (number of files per jobs) (default $batch)\n";
-    print "    --start (output file number for first job) (default $startPoint)\n";
-    print "    --jobname (name of the job) (default based on base config)\n";
-    print "    --prodSpace (production space) (default $prodSpace)\n";
-    print "    --nosubmit (don't actually submit, just make files)\n";
-    print "    --xrootd (use xrootd for file access)\n";
-    print "    --nice (set nice_user=true)\n";
-    exit(1);
-}
+#if ($#ARGV!=3 && $#ARGV!=6) {
+#    print "Usage: [BASE CONFIG] [NAME OF FILE CONTAINING LIST OF FILENAMES] [isMC=True/False] [runRandomTrack=True/False] [runLocally=True/False] [isSig=True/False] [hasDpho=True/False]\n\n";
+#    print "    --batch (number of files per jobs) (default $batch)\n";
+#    print "    --start (output file number for first job) (default $startPoint)\n";
+#    print "    --jobname (name of the job) (default based on base config)\n";
+#    print "    --prodSpace (production space) (default $prodSpace)\n";
+#    print "    --nosubmit (don't actually submit, just make files)\n";
+#    print "    --xrootd (use xrootd for file access)\n";
+#    print "    --nice (set nice_user=true)\n";
+#    exit(1);
+#}
 
 $basecfg=shift @ARGV;
 $filelist=shift @ARGV;
-#$cmsRunArguments=shift @ARGV;
-#$cmsRunArguments2nd=shift @ARGV;
-if($nargs==6) {
-  $cmsRunArguments4th=shift @ARGV;
-  $cmsRunArguments5th=shift @ARGV;
-  print "cmsRun Arguments: $cmsRunArguments, $cmsRunArguments2nd, $cmsRunArguments3rd, $cmsRunArguments4th, and $cmsRunArguments5th\n";
+$cmsRunArguments=shift @ARGV;
+for(my $i = 0; $i <= $nargs-3; $i++)
+{  
+   $nextArg=shift @ARGV;
+   $cmsRunArguments=$cmsRunArguments." ".$nextArg;    
 }
-if($nargs==3) {
-  print "cmsRun Arguments: $cmsRunArguments and $cmsRunArguments2nd\n";
-}
+print "cmsRun Arguments: $cmsRunArguments\n";
 
 if ($jobBase eq "default") {
     my $stub3=$basecfg;
@@ -70,7 +77,7 @@ if ($jobBase eq "default") {
 if (length($rt)<2) {
     print "You must run \"cmsenv\" in the right release area\n";
     print "before running this script!\n";
-    exit(1);
+   exit(1);
 }
 
 if ($use_xrootd) {
@@ -92,10 +99,13 @@ if ($nosubmit) {
 
 $cfg=$basecfg;
 
-system("mkdir -p $prodSpace/$jobBase");
-system("mkdir -p $prodSpace/logs");
-mkdir("$prodSpace/$jobBase/cfg");
-mkdir("$prodSpace/$jobBase/log");
+#system("mkdir -p $prodSpace/$jobBase");
+#mkdir("$prodSpace/$jobBase/cfg");
+#mkdir("$prodSpace/$jobBase/log");
+
+system("mkdir -p -m755 $prodSpace/$jobBase");
+system("mkdir -p -m755 $prodSpace/$jobBase/cfg");
+system("mkdir -p -m755 $prodSpace/$jobBase/log");
 
 $linearn=0;
 
@@ -106,28 +116,13 @@ if ($nosubmit) {
     open(SUBMIT,"|condor_submit");
 }
 print(SUBMIT "Executable = $executable\n");
-if($nargs==3) {
-  print(SUBMIT "Arguments = \"$cmsRunArguments $cmsRunArguments2nd\"\n");
-}
-if($nargs==6) {
-  print(SUBMIT "Arguments = \"$cmsRunArguments $cmsRunArguments2nd $cmsRunArguments3rd $cmsRunArguments4th $cmsRunArguments5th\"\n");
-}
+print(SUBMIT "Arguments = \"$cmsRunArguments\"\n");
 print(SUBMIT "Universe = vanilla\n");
-print(SUBMIT "Output = $prodSpace/logs/output\n");
-print(SUBMIT "Error = $prodSpace/logs/error\n");
-#print(SUBMIT "request_memory = 8192\n");
-print(SUBMIT "request_memory = 2048\n");
-print(SUBMIT "Requirements = (Arch==\"X86_64\")");
-# Zebras are for remote login, not cluster computing
-print(SUBMIT " && (Machine != \"zebra01.spa.umn.edu\" && Machine != \"zebra02.spa.umn.edu\" && Machine != \"zebra03.spa.umn.edu\" && Machine != \"zebra04.spa.umn.edu\" && Machine != \"caffeine.spa.umn.edu\")");
-print(SUBMIT " && (Machine != \"scorpion3.spa.umn.edu\" && Machine != \"scorpion18.spa.umn.edu\")");
-print(SUBMIT " && (Machine == \"scorpion46.spa.umn.edu\" || Machine == \"scorpion45.spa.umn.edu\" || Machine == \"scorpion43.spa.umn.edu\" )");
-#print(SUBMIT " && (Machine != \"scorpion42.spa.umn.edu\" && Machine != \"scorpion43.spa.umn.edu\" && Machine != \"scorpion45.spa.umn.edu\" && Machine != \"scorpion46.spa.umn.edu\" && Machine != \"scorpion5.spa.umn.edu\")");
-
-# These machines are VMs that run the grid interface
-print(SUBMIT " && (Machine != \"gc1-ce.spa.umn.edu\" && Machine != \"gc1-hn.spa.umn.edu\" && Machine != \"gc1-se.spa.umn.edu\" && Machine != \"red.spa.umn.edu\" && Machine != \"hadoop-test.spa.umn.edu\")");
-print(SUBMIT "\n");
-print(SUBMIT "+CondorGroup=\"cmsfarm\"\n");
+print(SUBMIT "initialdir = $prodSpace/$jobBase\n");
+print(SUBMIT "Output = $prodSpace/$jobBase/log/output.\$(Process)\n");
+print(SUBMIT "Error = $prodSpace/$jobBase/log/error.\$(Process)\n");
+print(SUBMIT "request_memory = 1G\n");
+print(SUBMIT "should_transfer_files = YES\n");
 if ($use_xrootd) {
     # If the proxy file exists and is a normal file, we use it
     if (-f $voms_proxy) {
@@ -161,6 +156,9 @@ while ($i<=$#flist) {
 
     @jobf=();
     for ($j=0; $j<$batch && $i<=$#flist; $j++) {
+        if ($flist[$i]=~/file:/){
+           $flist[$i]=~s|file:||;
+        }
         push @jobf,$flist[$i];
         $i++;
     }
@@ -172,15 +170,12 @@ while ($i<=$#flist) {
     $log="$prodSpace/$jobBase/log/$stub.log";
     $elog="$prodSpace/$jobBase/log/$stub.err";
     $sleep=(($ii*2) % 60)+2;  # Never sleep more than a ~minute, but always sleep at least 2
-    if($nargs==1) {
-      print(SUBMIT "Arguments = $arch $rt $prodSpace/$jobBase $jobCfg $log $elog $fname $sleep $jobf[0]\n");
+    print(SUBMIT "Arguments = $arch $rt $prodSpace/$jobBase $jobCfg $log $elog $fname $sleep $cmsRunArguments\n");
+    print(SUBMIT "transfer_input_files = ");
+    for ($jobNum=0; $jobNum<=$#jobf-1; $jobNum++) {
+    	print(SUBMIT "$jobf[$jobNum],");
     }
-    if($nargs==3) {
-      print(SUBMIT "Arguments = $arch $rt $prodSpace/$jobBase $jobCfg $log $elog $fname $sleep $jobf[0] $cmsRunArguments $cmsRunArguments2nd\n");
-    }
-    if($nargs==6) {
-      print(SUBMIT "Arguments = $arch $rt $prodSpace/$jobBase $jobCfg $log $elog $fname $sleep $jobf[0] $cmsRunArguments $cmsRunArguments2nd $cmsRunArguments3rd $cmsRunArguments4th $cmsRunArguments5th\n");
-    }
+    print(SUBMIT "$jobf[$#jobf]\n");
     print(SUBMIT "Queue\n");
 }
 
@@ -222,7 +217,7 @@ sub specializeCfg($$@) {
             if ($had3==1) {
                 $fname="$prodSpace/$jobBase/".$stub2."-hist.root";
             } else {
-                $fname="$prodSpace/$jobBase/".$stub2.".root";
+                $fname=$stub2.".root";
             }
             unlink($fname);
             print OUTP "       fileName = cms.string(\"$fname\"),\n";
@@ -252,7 +247,8 @@ sub specializeCfg($$@) {
                         $storefile=~s|.*/store|/store|;
                     }
                 } else {
-                    $storefile="file:".$storefile;
+                    my($filename, $dirs, $suffix) = fileparse($storefile);
+                    $storefile="file:".$filename;
                 }
 
                 print OUTP "         '".$storefile."'";
