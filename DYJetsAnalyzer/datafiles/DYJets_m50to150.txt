@@ -1,40 +1,80 @@
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_1.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_10.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_11.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_12.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_13.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_14.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_15.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_16.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_17.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_18.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_19.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_2.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_20.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_21.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_22.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_23.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_24.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_25.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_26.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_27.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_28.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_29.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_3.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_30.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_31.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_32.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_33.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_34.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_35.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_36.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_37.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_38.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_39.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_4.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_40.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_5.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_6.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_7.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_8.root
-file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_9.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_1.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_2.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_3.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_4.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_5.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_6.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_7.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_8.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_9.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_10.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_11.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_12.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_13.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_14.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_15.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_16.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_17.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_18.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_19.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_20.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_21.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_22.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_23.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_24.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_25.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_26.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_27.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_28.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_29.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_30.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_31.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_32.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_33.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_34.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_35.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_36.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_37.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_38.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_39.root
+file:/data/cmszfs1/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_40.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_1.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_10.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_11.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_12.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_13.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_14.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_15.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_16.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_17.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_18.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_19.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_2.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_20.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_21.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_22.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_23.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_24.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_25.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_26.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_27.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_28.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_29.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_3.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_30.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_31.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_32.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_33.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_34.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_35.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_36.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_37.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_38.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_39.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_4.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_40.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_5.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_6.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_7.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_8.root
+# file:/hdfs/cms/user/krohn045/WR_DY_GEN/DYJets_m50to150/GEN_9.root
